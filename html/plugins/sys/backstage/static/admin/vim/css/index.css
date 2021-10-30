@@ -1,0 +1,111 @@
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+.layui-form-label {
+    padding: 9px 15px 9px 10px;
+    width: 120px;
+}
+
+.layui-input-block {
+    margin-left: 145px;
+}
+
+.ace_editor{
+    line-height: 16px;
+    font-size: 16px;
+}
+.ace_editor.ace_autocomplete{
+    z-index: 99999999;
+}
+
+@media (max-height: 800px){
+    .layui-form-select dl{
+        max-height: 250px;
+    }
+}
+
+@media (max-height: 600px){
+    .layui-form-select dl{
+        max-height: 200px;
+    }
+}
+
+@media (max-height: 400px){
+    .layui-form-select dl{
+        max-height: 150px;
+    }
+}
+.layui-form-radio{
+    margin: 4px 10px 0 0;
+}
+.layui-form-select dl{
+    width: 100%;
+}
+.layui-select-option-first dl.layui-anim dd.layui-this:first-child,
+.layui-btn-primary,
+.layui-laydate .layui-this{
+    background-color:#FFF !important;
+}
+.layui-tab-title li{
+    min-width: auto;
+}
+.css_textarea_copy{
+    opacity: 0;
+    font-size: 1px;
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    left: -10px;
+}
+.css_iframe_inbox {
+    width: calc(100% + 40px);
+    height: calc(100vh - 43px);
+    margin: -20px;
+    margin-bottom: -100px;
+    border: none;
+}
+
+.editormd-code-toolbar select{
+    display: inline-block;
+}
+
+.layui-disabled, .layui-disabled:hover{
+    color: #888 !important;
+}
+
+/*滚动条美化*/
+* {
+     scrollbar-face-color: #ddd;
+     scrollbar-arrow-color: #c0c0c0;
+     scrollbar-3dlight-color: #c0c0c0;
+     scrollbar-highlight-color: #fff;
+     scrollbar-shadow-color: #fff;
+     scrollbar-darkshadow-color: #c0c0c0;
+     scrollbar-track-color: #fff;
+ }
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-track {
+    width: 6px;
+    background-color: #fff;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    background-clip: padding-box;
+    min-height: 28px;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ccc;
+}

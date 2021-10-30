@@ -1,0 +1,21 @@
+{
+    "name": "tphp/backstage",
+    "description": "TPHP Backstage",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TPHP",
+            "email": "336296@qq.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.13",
+        "tphp/tphp": ">=1.0"
+    },
+    "autoload": {
+        "files": [
+            "register.php"
+        ]
+    }
+}
+

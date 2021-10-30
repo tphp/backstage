@@ -1,0 +1,218 @@
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+.layui-form-main{
+    margin: 20px;
+}
+
+.layui-select-option-first dl.layui-anim dd:first-child{
+    color:#999;
+}
+
+.layui-select-option-first dl.layui-anim dd.layui-this:first-child{
+    background-color: #EEE;
+}
+
+.layui-elem-field{
+    margin: 30px -20px;
+    border-color: #CDF;
+}
+
+.layui-elem-field legend{
+    color:#1E9FFF;
+    font-size: 16px;
+
+}
+
+.auth-leaf{
+    line-height: 16px;
+}
+
+.auth-status{
+    padding-top: 10px;
+}
+
+.auth-status>i{
+    padding: 0px;
+    margin: 0px;
+    margin-right: 5px;
+}
+.auth-status>i.t{
+}
+.auth-status>div{
+    margin-top: -2px !important;
+}
+
+.js_image_or_file, .js_dir{
+    display: inline;
+    float: left;
+    width: calc(100% - 110px);
+}
+
+.js_dir{
+    width: calc(100% - 58px);
+}
+
+.js_btn_image_or_file,
+.css_btn_dir{
+    float: right;
+    border-color: #e6e6e6;
+    padding: 0 10px;
+}
+
+.js_btn_image_or_file:hover,
+.css_btn_dir:hover{
+    border-color: #b0b0b0;
+    color: #F33;
+}
+
+.css_btn_dir{
+    margin: 0px;
+    padding: 0px;
+}
+
+.css_btn_dir i{
+    color: #999;
+    width: 20px;
+    height: 36px;
+    line-height: 36px;
+    margin: 0px;
+    padding: 0px 10px;
+}
+.css_btn_dir i:hover{
+    color: #333;
+}
+
+.js_name_remark{
+    color:#08F;
+    cursor: pointer;
+}
+
+.layui-layer-tips{
+    max-width: 300px;
+    text-align: left;
+    z-index: 9999;
+    position: absolute !important;
+    width: 210px;
+    left: 60px !important;
+    /*top: -63px !important;*/
+    display: none;
+}
+
+.layui-layer-tips .layui-layer-content{
+    background-color:#CCC !important;
+    color:#FFF !important;
+    padding: 1px !important;
+}
+.layui-layer-tips .layui-layer-content .in{
+    overflow: hidden;
+    background-color: #F8F8F8;
+    position: relative;
+    color:#000;
+    z-index: 99999;
+    padding: 10px;
+}
+.layui-layer-tips .layui-layer-TipsT{
+    border-right-color:#CCC !important;
+}
+
+.layui-layer-tips .layui-layer-TipsTOut{
+    border-right-color:#FFF !important;
+    left: 4px !important;
+    bottom: -6px !important;
+}
+
+.layui-layer-tips-first .layui-layer-TipsT{
+    top: -8px !important;
+}
+
+.layui-layer-tips-first .layui-layer-TipsTOut{
+    left: 4px !important;
+    top: -6px !important;
+}
+
+.file_upload{
+    display: none;
+}
+
+.js_image_show{
+    padding-top: 18px;
+    display: none;
+}
+
+.js_image_show a{
+    border: 1px #EEE solid;
+    padding: 5px;
+    display: inline-block;
+}
+
+.js_image_show a img{
+    max-width: 300px;
+    max-height: 200px;
+}
+
+.js_image_show span{
+    padding-left: 10px;
+    vertical-align: bottom;
+}
+
+.layui-tab-content{
+    padding: 0px;
+    margin-top: 60px;
+}
+
+.layui-tab-brief{
+    margin: 0px;
+}
+
+.layui-tab-brief .layui-tab-title{
+    position: fixed;
+    z-index: 800;
+    background-color: #FFF;
+    top:0px;
+    left:0px;
+    width: 100%;
+}
+
+.is_tree{
+    color: #BBB;
+}
+
+.css_dir{
+    margin: 10px;
+}
+
+.layui-tree-line .layui-tree-entry:hover .layui-tree-txt {
+    color: #000;
+    text-decoration: none !important;
+    transition: none !important;
+}
+.layui-tree-txt:hover {
+    color: #08F !important;
+}
+
+.layui-icon-file{
+    margin-left: -2px;
+    margin-right: -2px;
+}
+
+.layui-tree-icon,
+.layui-tree-iconClick{
+    color:#999;
+}
+
+.layui-tree-icon, .layui-tree-iconClick{
+    border-radius: 2px;
+    border-color: #999;
+}
+
+.layui-input:disabled,
+.layui-select:disabled,
+.layui-textarea:disabled {
+    background-color: #F9F9F9;
+}
