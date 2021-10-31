@@ -241,8 +241,6 @@ class SystemInit
 
     /**
      * 用户表
-     *
-     * @param string $conn
      * @return mixed
      */
     public function tableUser($password = '')
@@ -266,7 +264,7 @@ class SystemInit
                 'field' => function (Illuminate\Database\Schema\Blueprint $table) {
                     $table->increments('id')->comment('用户ID');
                     $table->string('username', 20)->comment('用户名');
-                    $table->string('nickname', 50)->comment('昵称');
+                    $table->string('nickname', 50)->comment('昵称')->nullable();
                     $table->tinyInteger('sex')->comment('性别')->nullable();
                     $table->string('password', 64)->comment('密码')->nullable();
                     $table->string('salt', 10)->comment('密码盐值')->nullable();
@@ -345,7 +343,6 @@ class SystemInit
      * `json` VARCHAR(1024) NULL DEFAULT NULL COMMENT '角色目录',
      * `create_time` INT(11) NULL DEFAULT NULL COMMENT '创建时间',
      * `update_time` INT(11) NULL DEFAULT NULL COMMENT '更新时间',
-     * @param string $conn
      * @return mixed
      */
     public function tableRole()
@@ -385,8 +382,6 @@ class SystemInit
 
     /**
      * 菜单表
-     *
-     * @param string $conn
      * @return mixed
      */
     public function tableMenu()
@@ -417,8 +412,6 @@ class SystemInit
 
     /**
      * 菜单用户显示隐藏字段表
-     *
-     * @param string $conn
      * @return mixed
      */
     public function tableMenuField()
