@@ -1,5 +1,5 @@
 @php
-    $color = $_DC_['color'];
+    $color = \Tphp\Config::$domain['color'];
     list($borwserName) = plu('sys.default')->call('tools:getBrowser');
     if(!empty($color) && is_array($color) && count($color) >= 2){
         $c2 = $color[1];
