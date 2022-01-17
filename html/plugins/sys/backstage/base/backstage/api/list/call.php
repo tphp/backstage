@@ -640,6 +640,8 @@ return new class
      */
     public function html($apiObj, $data)
     {
+        if (is_string($data)) $apiObj->page404($data);
+
         $plu = TphpConfig::$domainPath->plu;
         if (empty($plu)) {
             return '';

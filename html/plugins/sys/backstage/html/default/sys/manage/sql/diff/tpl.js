@@ -9,7 +9,7 @@ layui.use(['table', 'form'], function(){
     table.render({
         elem: '#list'
         ,cols: [[
-            {field: 'table', title: '表', width: 150}
+            {field: 'table', title: '表', width: 200}
             , {field: 'field', title: '字段', width: 150}
             , {field: 'sql', title: '语句'}
         ]]
