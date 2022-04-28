@@ -266,7 +266,7 @@ class SystemInit
                 'field' => function (Illuminate\Database\Schema\Blueprint $table) {
                     $table->increments('id')->comment('用户ID');
                     $table->string('username', 20)->comment('用户名');
-                    $table->string('nickname', 50)->comment('昵称');
+                    $table->string('nickname', 50)->comment('昵称')->nullable();
                     $table->tinyInteger('sex')->comment('性别')->nullable();
                     $table->string('password', 64)->comment('密码')->nullable();
                     $table->string('salt', 10)->comment('密码盐值')->nullable();
