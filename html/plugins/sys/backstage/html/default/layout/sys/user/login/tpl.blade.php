@@ -81,7 +81,7 @@
 </div>
 <script>
     //如果是子窗口则从父窗口跳转到登录页面
-    if(parent.layer != undefined){
+    if(window.frames.length != parent.frames.length){
         parent.window.location.href = window.location.href;
     }
     layui.use(['layer', 'form'], function () {
