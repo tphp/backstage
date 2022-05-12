@@ -2318,7 +2318,7 @@ $(function () {
                 }
             });
         });
-
+        layui.form.render();
     }
 
     layui.use(['form', 'laydate'], function() {

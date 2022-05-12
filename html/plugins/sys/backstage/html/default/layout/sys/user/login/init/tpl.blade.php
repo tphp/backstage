@@ -15,8 +15,8 @@
         'admin/css/login.css',
         'admin/css/font-awesome.min.css',
     ])->js([
+        '@js/jquery/jquery.min.js',
         '@js/layui/layui.js',
-        '@js/jquery/jquery.min.js'
     ]);
 
     $bUsername = $_DC_['backstageusername'];

@@ -6,8 +6,8 @@
         'js/layui/css/layui.css',
         'admin/css/font-awesome.min.css',
     ])->js([
-        '@js/layui/layui.js',
         '@js/jquery/jquery.min.js',
+        '@js/layui/layui.js',
         '@js/jquery.index.js',
     ]);
 

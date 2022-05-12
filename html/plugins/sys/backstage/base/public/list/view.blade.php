@@ -5,8 +5,8 @@
         'admin/css/font-awesome.min.css',
         'admin/vim/css/list.css',
     ])->js([
-        '@js/layui/layui.js',
         '@js/jquery/jquery.min.js',
+        '@js/layui/layui.js',
         '@js/jquery.index.js',
     ]);
 @endphp

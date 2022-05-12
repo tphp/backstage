@@ -12,8 +12,8 @@
         'admin/css/font-awesome.min.css',
         'admin/vim/css/edit.css',
     ])->js([
-        '@js/layui/layui.js',
         '@js/jquery/jquery.min.js',
+        '@js/layui/layui.js',
         '@js/jquery.index.js',
         'admin/vim/js/edit.js',
     ]);

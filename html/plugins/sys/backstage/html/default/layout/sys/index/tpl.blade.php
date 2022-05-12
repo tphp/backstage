@@ -70,9 +70,9 @@
         'admin/css/jquery.mCustomScrollbar.min.css',
         'admin/css/style.css',
     ])->js([
+        '@js/jquery/jquery.min.js',
         '@js/layui/layui.js',
         '@admin/js/pace.min.js',
-        '@js/jquery/jquery.min.js',
         'admin/js/bootstrap.min.js',
         'admin/js/jquery.cookie.min.js',
         'admin/js/jquery.md5.min.js',
