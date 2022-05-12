@@ -1291,7 +1291,7 @@ $(function () {
                             if (height < handle_height) {
                                 llm.find(".layui-layer-content iframe").height(height);
                                 if ($("#layui-layer" + g_tmp_layout_id + " .layui-layer-btn").size() > 0) {
-                                    llm.height(height + 100);
+                                    llm.height(height + 109);
                                 } else {
                                     llm.height(height);
                                 }

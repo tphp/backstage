@@ -578,9 +578,9 @@ $(function () {
             var _ts = $(this);
             var _tsh = _ts.height();
             if($(".layui-layer-btn").size() > 0){
-                _tsh = _tsh - 102;
+                _tsh = _tsh - 110;
             }else{
-                _tsh = _tsh - 43;
+                _tsh = _tsh - 51;
             }
             var _ts_iframe = _ts.find("iframe");
             if(_ts_iframe.size() > 0) {
