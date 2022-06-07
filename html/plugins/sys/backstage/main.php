@@ -107,11 +107,10 @@ class MainController extends InitController
      */
     public function flushCache()
     {
-        // 删除 Redis 缓存
-        $output = trim(shell_exec('redis-cli flushall'));
-        $msg = "";
-        if (!empty($output) && $output !== 'OK') {
-            $msg = $output;
+        // 自定义缓存处理
+        $cache = Tphp\Config::$domain['cache'];
+        if (is_function($cache)) {
+            $cache();
         }
 
         $xFile = import('XFile');
