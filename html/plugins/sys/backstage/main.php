@@ -110,7 +110,7 @@ class MainController extends InitController
         // 自定义缓存处理
         $cache = Tphp\Config::$domain['cache'];
         if (is_function($cache)) {
-            $cache();
+            $cache($this);
         }
 
         $xFile = import('XFile');
