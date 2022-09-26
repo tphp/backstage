@@ -1122,7 +1122,7 @@ return new class
         $aoType = $apiObj->type;
 
         if (in_array($aoType, ['sys', 'selectTree'])) {
-            return [];
+            return [1];
         }
 
         $pkInfo = self::getPk();
@@ -1141,12 +1141,12 @@ return new class
             }
         } else {
             if (in_array($aoType, ['add', 'handle'])) {
-                return [];
+                return [1];
             }
         }
 
         if (!in_array($aoType, ['add', 'edit', 'edits'])) {
-            return;
+            return [1];
         }
 
         return self::runEdit($config, $apiObj, $pkInfo);
