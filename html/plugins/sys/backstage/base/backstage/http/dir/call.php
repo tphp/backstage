@@ -1145,6 +1145,10 @@ return new class
             }
         }
 
+        if (!in_array($aoType, ['add', 'edit', 'edits'])) {
+            return;
+        }
+
         return self::runEdit($config, $apiObj, $pkInfo);
     }
 };
