@@ -292,8 +292,14 @@ return new class
         $config = $apiObj->retConfig;
         $ttc = $apiObj->tplInit->config;
         $ttcType = strtolower($ttc['type']);
-        if (!in_array($ttcType, TplInit::$dataTypeList) || !isset($ttc['config']) || empty($ttc['config']['table'])) {
-            return $config;
+        if (!in_array($ttcType, TplInit::$dataTypeList) || !isset($ttc['config'])) {
+            if ($ttcType == 'dir') {
+                if (empty($ttc['config']['dir'])) {
+                    return $config;
+                }
+            } else if (empty($ttc['config']['table'])) {
+                return $config;
+            }
         }
 
         $type = $apiObj->tplInit->tplType;
@@ -316,6 +322,9 @@ return new class
                 }
                 $config['config'][$type] = $data;
             }
+        }
+        if ($ttcType == 'dir') {
+            return $config;
         }
         $apiObj->froms = $tFroms;
         $isEditBatch = false;

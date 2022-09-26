@@ -687,6 +687,20 @@ return new class
             }
         }
 
+        if ($apiObj->tplInit->isPost()) {
+            $aoType = $apiObj->type;
+            if (in_array($aoType, ['add', 'edit'])) {
+                $configEdit = $config[$aoType];
+                if (is_array($configEdit)) {
+                    foreach ($dirInfo as $k => $v) {
+                        if (isset($configEdit[$k])) {
+                            $dirInfo[$k] = $configEdit[$k];
+                        }
+                    }
+                }
+            }
+        }
+
         $list = [$dirInfo];
 
         return [1, $list, $fieldShow, [], ''];
@@ -1016,6 +1030,23 @@ return new class
 
         if (empty($iniInfo)) {
             return;
+        }
+
+        if ($apiObj->tplInit->isPost()) {
+            if (in_array($aoType, ['add', 'edit'])) {
+                $configEdit = $config[$aoType];
+                if (is_array($configEdit)) {
+                    foreach ($iniInfo as $k => $v) {
+                        foreach ($v as $_k => $_v) {
+                            if (isset($configEdit["{$k}:${_k}"])) {
+                                $iniInfo[$k][$_k] = $configEdit["{$k}:${_k}"];
+                            } elseif ($k == 'default' && isset($configEdit[$_k])) {
+                                $iniInfo[$k][$_k] = $configEdit[$_k];
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if ($aoType == 'add') {
