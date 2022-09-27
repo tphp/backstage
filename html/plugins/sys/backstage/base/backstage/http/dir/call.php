@@ -1135,6 +1135,7 @@ return new class
             return self::runDelete($config, $apiObj);
         }
 
+
         if ($apiObj->tplInit->isPost()) {
             if ($aoType == 'copy') {
                 return self::runCopy($config, $apiObj);
@@ -1145,7 +1146,7 @@ return new class
             }
         }
 
-        if (!in_array($aoType, ['add', 'edit', 'edits'])) {
+        if (!in_array($aoType, ['add', 'edit', 'edits', 'handle', 'copy'])) {
             return [1];
         }
 

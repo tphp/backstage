@@ -311,7 +311,12 @@ return new class
         $tFroms = [];
         if ($apiObj->tplInit->isPost()) {
             list($geData, $extData) = $this->getEditPostData($apiObj);
-            if (empty($geData) && empty($extData)) $apiObj->__exitError("没有数据传递");
+            if (empty($geData) && empty($extData)) {
+                if ($ttcType == 'dir') {
+                    return $config;
+                }
+                $apiObj->__exitError("没有数据传递");
+            }
             if (!empty($geData) && in_array($type, ['add', 'edit'])) {
                 $data = [];
                 foreach ($geData as $key => $val) {
