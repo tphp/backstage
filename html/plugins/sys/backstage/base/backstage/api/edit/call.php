@@ -28,6 +28,7 @@ return new class
         $isPost && $data = &$_POST;
         $fieldUnsets = [];
 
+        $isDir = $apiObj->vim->config['type'] == 'dir';
         $dateVch = $vch;
         if (!is_array($dateVch)) {
             $dateVch = [];
@@ -75,7 +76,7 @@ return new class
 
                 if (in_array($t, ['create_time', 'update_time'])) {
                     $fieldUnsets[] = $keyName;
-                    if ($isPost) {
+                    if ($isPost && !$isDir) {
                         if ($isInt) {
                             $time = time();
                         } else {
