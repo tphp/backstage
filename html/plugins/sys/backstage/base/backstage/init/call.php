@@ -197,6 +197,7 @@ return new class
             "src.php",
             "ini.php",
             "set.php",
+            "method.php",
             "{$tplType}.blade.php"
         ];
 
