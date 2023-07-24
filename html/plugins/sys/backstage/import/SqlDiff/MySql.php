@@ -12,6 +12,14 @@ require_once "SqlClass.php";
 
 class MySql extends SqlClass
 {
+    private  function is_charrater() {
+        $cr = env('CHARACTER');
+        if ($cr === 'false' || $cr === false) {
+            return false;
+        }
+        return true;
+    }
+
     protected function getDatabaseDetail($dbInfo)
     {
         // TODO: Implement getDatabaseDetail() method.
@@ -86,6 +94,7 @@ class MySql extends SqlClass
             }
         }
         if (!empty($new['table'])) {
+            $is_charrater = $this->is_charrater();
             foreach ($new['table'] as $tableName => $tableDetail) {
                 if (!isset($old['table'][$tableName])) {
                     //新建表
@@ -100,8 +109,10 @@ class MySql extends SqlClass
                         $change['Engine'] = $tableDetail['Engine'];
                     if ($tableDetail['Row_format'] !== $oldDetail['Row_format'])
                         $change['Row_format'] = $tableDetail['Row_format'];
-                    if ($tableDetail['Collation'] !== $oldDetail['Collation'])
-                        $change['Collation'] = $tableDetail['Collation'];
+                    if ($is_charrater) {
+                        if ($tableDetail['Collation'] !== $oldDetail['Collation'])
+                            $change['Collation'] = $tableDetail['Collation'];
+                    }
                     //if($tableDetail['Create_options']!=$oldDetail['Create_options'])
                     //	$change['Create_options']=$tableDetail['Create_options'];
                     if ($tableDetail['Comment'] !== $oldDetail['Comment'])
@@ -134,13 +145,19 @@ class MySql extends SqlClass
             }
         }
         if (!empty($new['index'])) {
+            $is_charrater = $this->is_charrater();
             foreach ($new['index'] as $table => $indexs) {
                 if (isset($old['index'][$table])) {
                     $oldIndexs = $old['index'][$table];
                     foreach ($indexs as $indexName => $indexDetail) {
                         if (isset($oldIndexs[$indexName])) {
                             //存在，对比内容
-                            if ($indexDetail['Non_unique'] !== $oldIndexs[$indexName]['Non_unique'] || $indexDetail['Column_name'] !== $oldIndexs[$indexName]['Column_name'] || $indexDetail['Collation'] !== $oldIndexs[$indexName]['Collation'] || $indexDetail['Index_type'] !== $oldIndexs[$indexName]['Index_type']) {
+                            if (
+                                $indexDetail['Non_unique'] !== $oldIndexs[$indexName]['Non_unique'] ||
+                                $indexDetail['Column_name'] !== $oldIndexs[$indexName]['Column_name'] ||
+                                ($is_charrater && $indexDetail['Collation'] !== $oldIndexs[$indexName]['Collation']) ||
+                                $indexDetail['Index_type'] !== $oldIndexs[$indexName]['Index_type']
+                            ) {
                                 $diff['index']['drop'][$table][$indexName] = $indexName;
                                 $diff['index']['add'][$table][$indexName] = $indexDetail;
                             }
@@ -176,6 +193,7 @@ class MySql extends SqlClass
             }
         }
         if (!empty($new['field'])) {
+            $is_charrater = $this->is_charrater();
             foreach ($new['field'] as $table => $fields) {
                 if (isset($old['field'][$table])) {
                     $oldFields = $old['field'][$table];
@@ -185,7 +203,7 @@ class MySql extends SqlClass
                             //字段存在，对比内容
                             if (
                                 $fieldDetail['Type'] !== $oldFields[$fieldName]['Type'] ||
-                                $fieldDetail['Collation'] !== $oldFields[$fieldName]['Collation'] ||
+                                ($is_charrater && $fieldDetail['Collation'] !== $oldFields[$fieldName]['Collation']) ||
                                 $fieldDetail['Null'] !== $oldFields[$fieldName]['Null'] ||
                                 $fieldDetail['Default'] !== $oldFields[$fieldName]['Default'] ||
                                 $fieldDetail['Extra'] !== $oldFields[$fieldName]['Extra'] ||
@@ -251,14 +269,22 @@ class MySql extends SqlClass
                 foreach ($diff['table']['change'] as $tableName => $table_changes) {
                     if (!empty($table_changes)) {
                         $sql = "ALTER TABLE `$tableName`";
+                        $inc = 0;
                         foreach ($table_changes as $option => $value) {
                             if ($option == 'Collation') {
-                                list($charset) = explode('_', $value);
-                                $sql .= " DEFAULT CHARACTER SET $charset COLLATE $value";
-                            } else
+                                if ($this->is_charrater()) {
+                                    list($charset) = explode('_', $value);
+                                    $sql .= " DEFAULT CHARACTER SET $charset COLLATE $value";
+                                    $inc ++;
+                                }
+                            } else {
                                 $sql .= " " . strtoupper($option) . " = '$value' ";
+                                $inc ++;
+                            }
                         }
-                        $sqls[$tableName]['__CHANGE__'][] = $sql;
+                        if ($inc > 0) {
+                            $sqls[$tableName]['__CHANGE__'][] = $sql;
+                        }
                     }
                 }
             }
@@ -410,6 +436,9 @@ class MySql extends SqlClass
 
     private function sqlCol($val)
     {
+        if (!$this->is_charrater()) {
+            return '';
+        }
         switch ($val) {
             case null:
                 return '';
