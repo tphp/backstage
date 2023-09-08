@@ -173,7 +173,9 @@ abstract class SqlClass
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
         curl_setopt($ch, CURLOPT_TIMEOUT_MS, 5000);
-		curl_setopt($ch, CURLOPT_HTTP09_ALLOWED, true);
+        try {
+			curl_setopt($ch, CURLOPT_HTTP09_ALLOWED, true);
+		} catch (Exception $e) {};
         curl_exec($ch);
         $curlErrNo = curl_errno($ch);
         $curlError = curl_error($ch);
