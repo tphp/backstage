@@ -81,6 +81,30 @@ class MySql extends SqlClass
         }
     }
 
+    private function getTypeName($type)
+	{
+		$pos = strpos($type, "(");
+		if ($pos === false) {
+			return $type;
+		}
+		return substr($type, 0, $pos);
+	}
+
+	private function differ($new, $src, $isCut=false)
+	{
+		if (is_null($new)) {
+			$new = "";
+		}
+		if (is_null($src)) {
+			$src = "";
+		}
+		if ($isCut) {
+			$new = $this->getTypeName($new);
+			$src = $this->getTypeName($src);
+		}
+		return $new != $src;
+	}
+
     protected function compareDatabase($new, $old)
     {
         // TODO: Implement compareDatabase() method.
@@ -200,14 +224,15 @@ class MySql extends SqlClass
                     $lastField = '';
                     foreach ($fields as $fieldName => $fieldDetail) {
                         if (isset($oldFields[$fieldName])) {
+                        	$oldField = $oldFields[$fieldName];
                             //字段存在，对比内容
                             if (
-                                $fieldDetail['Type'] !== $oldFields[$fieldName]['Type'] ||
-                                ($is_charrater && $fieldDetail['Collation'] !== $oldFields[$fieldName]['Collation']) ||
-                                $fieldDetail['Null'] !== $oldFields[$fieldName]['Null'] ||
-                                $fieldDetail['Default'] !== $oldFields[$fieldName]['Default'] ||
-                                $fieldDetail['Extra'] !== $oldFields[$fieldName]['Extra'] ||
-                                $fieldDetail['Comment'] !== $oldFields[$fieldName]['Comment']
+								$this->differ($fieldDetail['Type'], $oldField['Type'], true) ||
+                                ($is_charrater && $this->differ($fieldDetail['Collation'], $oldField['Collation'])) ||
+								$this->differ($fieldDetail['Null'], $oldField['Null']) ||
+								$this->differ($fieldDetail['Default'], $oldField['Default']) ||
+								$this->differ($fieldDetail['Extra'], $oldField['Extra']) ||
+								$this->differ($fieldDetail['Comment'], $oldField['Comment'])
                             ) {
                                 $diff['field']['change'][$table][$fieldName] = $fieldDetail;
                             }
