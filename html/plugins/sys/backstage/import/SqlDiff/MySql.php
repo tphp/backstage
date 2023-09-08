@@ -87,7 +87,14 @@ class MySql extends SqlClass
 		if ($pos === false) {
 			return $type;
 		}
-		return substr($type, 0, $pos);
+		$typeLeft = substr($type, 0, $pos);
+		$typeRight = substr($type, $pos + 1);
+		$pos = strpos($typeRight, ")");
+		if ($pos === false) {
+			return $typeLeft;
+		}
+		$typeRight = substr($typeRight, $pos + 1);
+		return $typeLeft . $typeRight;
 	}
 
 	private function differ($new, $src, $isCut=false)
