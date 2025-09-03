@@ -135,12 +135,8 @@ class Upload
                 $type = $val['type'];
                 $tmpName = $val['tmp_name'];
                 if ($val['size']) {
-                    if ($type == "image/pjpeg" || $type == "image/jpeg") {
-                        $im = imagecreatefromjpeg($tmpName);
-                    } elseif ($type == "image/x-png" || $type == "image/png") {
-                        $im = imagecreatefrompng($tmpName);
-                    } elseif ($type == "image/gif") {
-                        $im = imagecreatefromgif($tmpName);
+                    if (strpos(trim($type), "image/") === 0) {
+                        $im = imagecreatefromstring(file_get_contents($tmpName));
                     }
                     if ($im) {
                         foreach ($this->resize as $keyName => $vList) {
