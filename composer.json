@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+        "php": "^7.2",
         "phpoffice/phpspreadsheet": "^1.13",
         "tphp/tphp": ">=1.0"
     },
