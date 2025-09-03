@@ -14,16 +14,21 @@ return function(){
         $pattern = "/(.+):\s*([0-9]+)/";
         preg_match_all($pattern, $str, $out);
         $infoStr = "<div>物理内存总量：<span>".intval($out[2][0] / 1024)."MB</span></div>";
-        $infoStr .= "<div>内存使用率：<span>".round((100 * ($out[2][0] - $out[2][1])) / $out[2][0], 2)."%</span></div>";
-
+        if ($out[2][0] > 0) {
+            $infoStr .= "<div>内存使用率：<span>".round((100 * ($out[2][0] - $out[2][1])) / $out[2][0], 2)."%</span></div>";
+        }
         $mode = "/(cpu)[\s]+([0-9]+)[\s]+([0-9]+)[\s]+([0-9]+)[\s]+([0-9]+)[\s]+([0-9]+)[\s]+([0-9]+)[\s]+([0-9]+)[\s]+([0-9]+)/";
         $string=shell_exec("more /proc/stat");
         preg_match_all($mode, $string, $arr);
         $total = $arr[2][0] + $arr[3][0] + $arr[4][0] + $arr[5][0] + $arr[6][0] + $arr[7][0] + $arr[8][0] + $arr[9][0];
         $time = $arr[2][0] + $arr[3][0] + $arr[4][0] + $arr[6][0] + $arr[7][0] + $arr[8][0] + $arr[9][0];
-        $percent = round($time / $total, 3);
-        $percent = $percent * 100;
-        $infoStr .= "<div>CPU使用率:<span>".$percent."%</span></div>";
+        if ($total <= 0) {
+            $percent = 1;
+        } else {
+            $percent = round($time / $total, 3);
+            $percent = $percent * 100;
+            $infoStr .= "<div>CPU使用率:<span>".$percent."%</span></div>";
+        }
 
         $fp = popen('df -lh | grep -E "^(/)"',"r");
         $rs = fread($fp, 10240);
